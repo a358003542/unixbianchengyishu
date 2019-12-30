@@ -57,6 +57,9 @@
 
 %================目录===============%
 \usepackage{tocloft}%
+\makeatletter
+\renewcommand{\numberline}[1]{\@cftbsnum #1\@cftasnum~\@cftasnumb}
+\makeatother
 
 
 %%===============中文化=========%
