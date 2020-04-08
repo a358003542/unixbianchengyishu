@@ -1,6 +1,6 @@
 body { margin: 5%; text-align: justify; font-size: medium; }
 code { font-family: monospace; }
-p {
+body>p,section>p {
     text-indent:2em;
 }
 h1 { text-align: left; }
