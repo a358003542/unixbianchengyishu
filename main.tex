@@ -1,164 +1,51 @@
 % !Mode:: "TeX:UTF-8"
 
-
 \documentclass[12pt,oneside]{book}
 
-\newlength{\textpt}
-\setlength{\textpt}{12pt}
+\usepackage{mybook} 
+\usepackage{mybookcover}
 
 
-%========基本必备的宏包========%
-\usepackage{calc,float,multicol,moresize}
-\linespread{1.5}
+%=========重新定义 quote=====%
+\renewenvironment{quote}[1][anonymous]
+{\def\quoteauthor{#1}
+\list{}{\rightmargin\leftmargin %右间距等于左间距
+\itemindent   2em
+}\item\relax
+\ttfamily}
+{\\
+\makebox[\linewidth][r]{\sffamily —\quoteauthor}
+\endlist}
 
-
-%===========全文基本格式==========%
-\setlength{\parskip}{1.6ex plus 0.2ex minus 0.2ex}   %段落間距
-\setlength{\parindent}{\textpt * \real{2}}
-
-
-%=========页面设置=========%
-\usepackage[a4paper, %a4paper size 297:210 mm
-  bindingoffset=10mm,%裝訂線
-  top=35mm,  %上邊距 包括頁眉
-  bottom=30mm,%下邊距 包括頁腳
-  inner=10mm,  %左邊距or inner
-  outer=10mm,  %右邊距or  outer
-  headheight=10mm,%頁眉
-  headsep=15mm,%
-  footskip=15mm,%
-  marginparsep=10pt, %旁註與正文間距
-  marginparwidth=6em,includemp=true% 旁註寬度計入width%旁註寬度
-  ]{geometry}
-
-%color
-\usepackage[table,svgnames]{xcolor}
-
-
-%================字體================%
-%设置数学字体
-\usepackage{amssymb,amsmath}
-\usepackage{stmaryrd}
-\usepackage{fontspec}
-\everymath{\displaystyle}
-
- %設置英文字體
-\setmainfont[Mapping=tex-text]{DejaVu Serif}
-\setsansfont[Mapping=tex-text]{DejaVu Sans}
-\setmonofont[Mapping=tex-text]{DejaVu Sans Mono}
-
-%中文環境
-\usepackage[]{xeCJK}
-\xeCJKsetup{PunctStyle=plain}
-\setCJKmainfont[ItalicFont=方正楷体简体]{思源宋体 CN}
-\setCJKsansfont{思源黑体 CN}
-\setCJKmonofont{方正楷体简体}
-
-
-%================目录===============%
-\usepackage{tocloft}%
-\makeatletter
-\renewcommand{\numberline}[1]{\@cftbsnum #1\@cftasnum~\@cftasnumb}
-\makeatother
-
-
-%%===============中文化=========%
-\renewcommand\contentsname{目~录}
-\renewcommand\listfigurename{插图目录}
-\renewcommand\listtablename{表格目录}
-\renewcommand\bibname{参~考~文~献}
-\renewcommand\indexname{索~引}
-\renewcommand\figurename{图}
-\renewcommand\tablename{表}
-\renewcommand\partname{部分}
-\renewcommand\appendixname{附录}
-\renewcommand{\today}{\number\year 年\number\month 月\number\day 日}
-
-
-%=======页眉页脚格式=========%
-\usepackage{fancyhdr}
-\usepackage{zhnumber}
-\pagestyle{fancy}
-\renewcommand{\sectionmark}[1]
-{\markright{第\zhnumber{\arabic{section}}节~~#1}{}}
-
-\fancypagestyle{plain}{%
-    \fancyhf{}
-    \renewcommand{\headrulewidth}{0pt}
-    \renewcommand{\footrulewidth}{0pt}
-    \fancyhf[HR]{\ttfamily \footnotesize \rightmark }
-    \fancyhf[FR]{\thepage}}
-\pagestyle{plain}
-
-
-
-%=========章節標題設計=========%
-\usepackage{titlesec}
-%修改part
-\titleformat{\part}{\huge\sffamily}{}{0em}{}
-%修改chapter
-\titleformat{\chapter}{\LARGE\sffamily}{}{0em}{}
-%修改section
-\titleformat{\section}{\Large\sffamily}{}{0em}{}
-%修改subsection
-\titleformat{\subsection}{\large\sffamily}{}{0em}{}
-%修改subsubsection
-\titleformat{\subsubsection}{\normalsize\sffamily}{}{0em}{}
-
-
-%==============超鏈接===============%
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
-
-
-%=================文字強調=========%
-\usepackage{ulem}
-\normalem
-
-
-%==================插入圖片=======%
-\usepackage{wrapfig}
-\usepackage{graphicx}
-\graphicspath{{figures/}}
-
-
-
-%==============插入表格========%
-\usepackage{booktabs}
-\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
-\usepackage{caption}
-
-
-\usepackage{fancyvrb} 
-\fvset{frame=lines,tabsize=4 ,baselinestretch=1.8, fontsize=\footnotesize}
-\usepackage{minted}%
-
-%========脚注=========%
-\usepackage{perpage}
-\MakePerPage{footnote}
-\setlength{\skip\footins}{20pt plus 10pt}
-
-
-%framed环境
-\usepackage{framed}
-
-
-\usepackage{indentfirst} 
-
-
+%重新定义quotation
+\renewenvironment{quotation}
+{\list{}{\rightmargin\leftmargin %右间距等于左间距
+\itemindent 2em%item的缩进也就是第一段的缩进
+\listparindent \itemindent %第二段的缩进
+}%
+\item\relax
+\ttfamily}
+{\endlist}
 
 \title{unix编程艺术}
-\author{作者: Eric S. Raymond}
+\author{[美]Eric S. Raymond}
 \hypersetup{
-  pdfkeywords={},
-  pdfsubject={制作者邮箱：a358003542@outlook.com},
-  pdfcreator={万泽}}
+    pdftitle={unix编程艺术},
+    pdfauthor={[美]Eric S. Raymond},
+    pdfcreator={Wander},
+    pdfsubject={计算机},
+}
+  
+
 \begin{document}
+\bookcover{book_cover}
 
-\maketitle
-\tableofcontents
+\flypage{感谢上帝}
 
 
-\chapter*{前言}
+\frontmatter 
+\addchtoc{序言}
+\chapter*{序言}
 
 \begin{flushright}
 与其说Unix是个操作系统，不如说是一部口述历史。
@@ -267,16 +154,15 @@
 
 有先见之明和丰富想象力的编辑不多，好在Mark Taub就是一个，他从并不看好的项目中发现了闪光点，并极富技巧地促成了这本书的写作。文字编辑中，文笔好而又能帮助别人提高文笔的更少了，所幸Mary Lou Nohr是其中之一。Jerry Votta的封面设计领会了我的意图，而且做得比我的想像还要漂亮。Adisson-Wesley的编辑们让审稿和出版这一过程不再枯燥无味，我天生怕被人管，但是他们仍然极力配合我，使得文字、版面、图片和市场工作都达到极高的水准。
 
-%这里空一行。
 
 
-
+\addchtoc{目录}
 \setcounter{tocdepth}{3}    
 \tableofcontents
 
 
-\mainmatter 
 
+\mainmatter 
 \part{Context}
 \chapter{哲学}
 
@@ -687,7 +573,7 @@ McIlroy要求我们在设计时要考虑宽容性，而不是用过分纵容的�
 所有的Unix哲学浓缩为一条铁律，那就是各地编程大师们奉为圭桌的“KISS”原则：
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1 , keepaspectratio]{KISS.png}
+\includegraphics[scale=0.9 , keepaspectratio]{KISS.png}
 \end{figure}
 
 
@@ -751,7 +637,7 @@ Unix的完整起源故事可参见\cite{Ritchie79}，这是从Thompson第一个�
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=1 , keepaspectratio]{PDP-7.jpg}
+\includegraphics[scale=2 , keepaspectratio]{PDP-7.jpg}
 \end{figure}
 
 
@@ -2889,7 +2775,7 @@ imap jrandom@imap.netaxs.com | smtp jrandom
 \begin{Verbatim}
 tar -czvf /dev/st0 "$@"
 \end{Verbatim}
-
+%$
 
 这是一个为\textit{tar}(1)磁带归档程序编写的包装器，这个包装器只简单地提供一个固定参数（磁带设备/dev/s t0），并把用户提供的其它参数(  "\${}@" ) \footnote{一个常见的错误是使用 \${}* 而不是 "\${}@" 。这在传递含有空格的文件名时会出问题。} 传递给tar。
 
@@ -3606,7 +3492,7 @@ JavaScript是充分的图灵完备的解释性语言，和Python一样，具有�
 
 随着时间的推移，JavaScript语言变得更加通用了，而且对其客户端环境的约束也放松了。这是任何一个成功的专用语言随着其能力在开发者和用户的头脑中逐渐展现时可预期的结果。客户端JavaScript现在也可以通过在一个叫做浏览器DOM（文件对象模型）的单个对象中读写值而与环境交互。虽然这个语言仍然给浏览器遗留了一些DOM无法支持的API，但这些API都己过时，没有列入JavaScript的ECMA-262标准中，而且在将来的版本中可能也不会支持。
 
-JavaScript的标准参考书是《JavaScript: The Definitive Guide》 （JavaScript：权威指南）\cite{FlanaganJavaScript}，源码可下载。\footnote{JavaScript的开源c和Java实现可在\href{http://www.mozilla.org/js/}{这里}获取。}JavaS-cript成为一个有趣的实例有两个理由。首先，它是我们无需真正进入但可尽量接近的通用语言。其次，客户端JavaScript及其通过单个DOM对象的浏览器环境之间的结合是个非常棒的设计，能够作为其它嵌入情形的借鉴模型。
+JavaScript的标准参考书是《JavaScript: The Definitive Guide》 \\（JavaScript：权威指南）\cite{FlanaganJavaScript}，源码可下载\footnote{JavaScript的开源c和Java实现可在\href{http://www.mozilla.org/js/}{这里}获取。}。JavaScript成为一个有趣的实例有两个理由。首先，它是我们无需真正进入但可尽量接近的通用语言。其次，客户端JavaScript及其通过单个DOM对象的浏览器环境之间的结合是个非常棒的设计，能够作为其它嵌入情形的借鉴模型。
 
 
 

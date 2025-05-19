@@ -1,12 +1,9 @@
 ---
 title: "unix编程艺术"
-creator:
-- role: translator
-  text: 翻译：姜宏
-- role: editor
-  text: 编者：万泽
-date: "2019-12-05"
-subject: [技术,  unix]
-lang: zh
+author: "[美]Eric S. Raymond"
+creator: "Wander"
+date: "2025-05-19"
+subject: "计算机"
+lang: zh-hans
 css: epub.css
-cover-image: cover.jpg
+cover-image: book_cover.jpg
